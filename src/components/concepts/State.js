@@ -20,7 +20,6 @@ const State = () => {
     );
 };
 
-export default State;
 
 function StateExample() {
     const [text, setText] = useState('');
@@ -42,3 +41,4 @@ function StateExample() {
         </div>
     );
 };
+export default State;

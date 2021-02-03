@@ -18,23 +18,36 @@ const Effects = () => {
     )
 }
 
-export default Effects;
 
 const SampleEffect = () =>{
     const [timerRunning, setTimerRunning] = useState(false)
-    useEffect =(() =>{
-        console.log('we initiated a state change')})
-    let buttonHandler = () => {
-        if (!timerRunning) {
-            setTimerRunning(true);
+    
+    useEffect (() => {
+        let timer;
+        if (timerRunning) {
+            timer = window.setTimeout(() => {
+                console.log("The time has expired", Date.now()/1000);
+                setTimerRunning(false);
+            }, 2000)
         }
-    }
+        return() => {window.clearTimeout(timer); console.log("the timer was cleaned up", Date.now()/1000)}
+    });
 
-    return (
-        <div style= {{border: '1px dashed black'}}>
+    useEffect(() => {
+        console.log("This painting needs happy trees")
+    }, [])
+        
+        let buttonHandler = () => {
+            if (!timerRunning) {
+                setTimerRunning(true);}}
+                
+                return (
+                    <div style= {{border: '1px dashed black'}}>
             <h2>This component demoes an effect</h2>
-            <button onClick={buttonHandler}>Click me to start an effect in the console</button>
+            <button onClick ={buttonHandler} >Click me to start an effect in the console</button>
         </div>
 
-    )
+)
 }
+
+export default Effects;
